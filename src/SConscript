@@ -1,0 +1,24 @@
+import os, sys, time
+from glob import glob
+
+env = Environment()
+ccflags = ['-std=c++0x', ]
+if ARGUMENTS.get('release', '0') == '0':
+  ccflags += ['-O0', '-g3', '-Werror', ]
+else:
+  ccflags += ['-O3', '-g0', '-Wall', ]
+env.Append(CPPFLAGS = ccflags)
+env.Append(CPPPATH = ['/usr/local/include'])
+
+ccdefines = {'_FILE_OFFSET_BITS':'64',  
+	'DEBUG' : 1}
+env.Append(CPPDEFINES=ccdefines)
+
+source_files = ['com_inveno_jni_CityHash.cc', 'city.cc']
+
+print("souce code list: >>")
+for s in source_files:
+  print(s)
+print('')
+
+env.SharedLibrary('CityHash4JavaLinux', source_files)
