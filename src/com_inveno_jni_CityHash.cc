@@ -4,7 +4,6 @@
 #include "com_inveno_jni_CityHash.h"
 #include "city.h"
 
-
 /* c/c++ string turn to java jstring */
 jstring charToJstring(JNIEnv** env, const char* pat)
 {
